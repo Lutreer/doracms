@@ -9,7 +9,10 @@ let databackforder = process.cwd() + '/databak/';
 
 let dataPath = databackforder + moment().format('YYYYMMDDHHmmss').toString();;
 
-let cmdstr = isDev ? 'mongodump -d ' + settings.DB + ' -o "' + dataPath + '"' : 'mongodump -u ' + settings.USERNAME + ' -p ' + settings.PASSWORD + ' -d ' + settings.DB + ' -o "' + dataPath + '"';
+// let cmdstr = isDev ? 'mongodump -d ' + settings.DB + ' -o "' + dataPath + '"' : 'mongodump -u ' + settings.USERNAME + ' -p ' + settings.PASSWORD + ' -d ' + settings.DB + ' -o "' + dataPath + '"';
+let cmdstr = isDev 
+        ? 'mongodump -u ' + settings.USERNAME + ' -p ' + settings.PASSWORD + ' -d ' + settings.DB + ' -o "' + dataPath + '"' 
+        : 'mongodump -u ' + settings.USERNAME + ' -p ' + settings.PASSWORD + ' -d ' + settings.DB + ' -o "' + dataPath + '"';
 
 exec(cmdstr).stdout;
 

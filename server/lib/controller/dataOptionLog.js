@@ -58,7 +58,10 @@ class DataItem {
         let databackforder = isDev ? process.cwd() + '/databak/' : systemConfigs[0].databackForderPath;
         let mongoBinPath = systemConfigs[0].mongodbInstallPath;
         let dataPath = databackforder + ms;
-        let cmdstr = isDev ? 'mongodump -d ' + settings.DB + ' -o "' + dataPath + '"' : mongoBinPath + 'mongodump -u ' + settings.USERNAME + ' -p ' + settings.PASSWORD + ' -d ' + settings.DB + ' -o "' + dataPath + '"';
+        // let cmdstr = isDev ? 'mongodump -d ' + settings.DB + ' -o "' + dataPath + '"' : mongoBinPath + 'mongodump -u ' + settings.USERNAME + ' -p ' + settings.PASSWORD + ' -d ' + settings.DB + ' -o "' + dataPath + '"';
+        let cmdstr = isDev 
+                ? mongoBinPath + 'mongodump -u ' + settings.USERNAME + ' -p ' + settings.PASSWORD + ' -d ' + settings.DB + ' -o "' + dataPath + '"' 
+                : mongoBinPath + 'mongodump -u ' + settings.USERNAME + ' -p ' + settings.PASSWORD + ' -d ' + settings.DB + ' -o "' + dataPath + '"';
 
         if (!fs.existsSync(databackforder)) {
             fs.mkdirSync(databackforder);
